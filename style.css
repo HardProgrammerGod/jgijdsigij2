@@ -28,7 +28,7 @@ input{font:inherit;color:inherit;background:none;border:0;outline:0;width:100%}
 
 /* Home */
 .home-scroll{background:linear-gradient(180deg,var(--navy) 0,#0f1014 520px);display:flex;flex-direction:column;padding-bottom:100px}
-.hero{padding:2px 16px 0;flex:none}
+.hero{padding:50px 16px 0;flex:none}
 .topbar{display:flex;align-items:center;gap:12px;height:44px;margin-top:0}
 .avatar-p{width:48px;height:48px;border-radius:50%;background:#9c27b0;display:grid;place-items:center;font-size:18px;font-weight:600;margin-left:-2px}
 .chat{position:relative;margin-left:4px}.badge{position:absolute;top:-8px;right:-8px;background:var(--coral);font-size:12px;border-radius:10px;min-width:20px;height:20px;display:grid;place-items:center;padding:0 5px}
@@ -69,7 +69,7 @@ input{font:inherit;color:inherit;background:none;border:0;outline:0;width:100%}
 .avw .ub{position:absolute;right:-4px;bottom:-4px;width:24px;height:24px;border-radius:50%;background:#1b1c1f;border:2px solid #25262b;font-size:13px;font-weight:800;display:grid;place-items:center}
 
 /* History */
-.h-head{display:flex;align-items:flex-start;justify-content:space-between;padding:4px 10px 6px}
+.h-head{display:flex;align-items:flex-start;justify-content:space-between;padding:50px 10px 6px}
 .h-mid{display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:2px;font-size:18px}
 .h-right{display:flex;min-width:88px;justify-content:flex-end}
 .mini-card{width:84px;height:54px;border-radius:8px;background:linear-gradient(145deg,#26272b,#0e0e10);position:relative;font-style:italic}
@@ -80,7 +80,7 @@ input{font:inherit;color:inherit;background:none;border:0;outline:0;width:100%}
 
 /* Receipt */
 .rec-scroll{background:var(--bg);padding-bottom:calc(24px + env(safe-area-inset-bottom))}
-.banner{height:130px;position:relative;background-image:radial-gradient(circle at 20% 30%,#ffffff22 0 3px,transparent 4px),radial-gradient(circle at 70% 60%,#ffffff22 0 3px,transparent 4px);background-size:70px 60px;padding:4px 10px 0;display:flex;justify-content:space-between;align-items:flex-start}
+.banner{height:130px;position:relative;background-image:radial-gradient(circle at 20% 30%,#ffffff22 0 3px,transparent 4px),radial-gradient(circle at 70% 60%,#ffffff22 0 3px,transparent 4px);background-size:70px 60px;padding:50px 10px 0;display:flex;justify-content:space-between;align-items:flex-start}
 .banner .av{position:absolute;left:50%;bottom:-32px;transform:translateX(-50%);width:94px;height:94px;border:3px solid #fff;z-index:2;font-size:12px}
 .banner .icon-btn.on{color:var(--yel)}
 .r-card{background:var(--surf);border-radius:28px 28px 0 0;margin-top:-26px;padding:58px 0 24px;text-align:center;position:relative}
@@ -104,7 +104,7 @@ input{font:inherit;color:inherit;background:none;border:0;outline:0;width:100%}
 .chart-wrap{background:var(--surf);border-radius:22px;padding:20px 16px 14px}.chart-wrap .chart{padding:0;background:none}
 
 /* Transfer */
-.tr-head{background:linear-gradient(180deg,#3a0f7a,#2a25a4 45%,#4a86d0);padding:4px 16px 22px}
+.tr-head{background:linear-gradient(180deg,#3a0f7a,#2a25a4 45%,#4a86d0);padding:50px 16px 22px}
 .tr-head .row{display:flex;justify-content:space-between;margin-left:-10px}
 .tr-head h2{font-size:28px;font-weight:700;margin:6px 0 16px}
 .search{display:flex;align-items:center;background:#ffffff26;border-radius:16px;padding:0 14px;height:54px}
@@ -115,7 +115,7 @@ input{font:inherit;color:inherit;background:none;border:0;outline:0;width:100%}
 .grp{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#1fb5c9,#1a7f9c);display:block}
 .found-row{display:flex;align-items:center;gap:16px;font-size:19px;width:100%;text-align:left}
 .hint{color:var(--mut);font-size:15px;margin-top:14px;line-height:1.5}.link{color:#8fb0ff;text-decoration:underline;font-size:15px}
-.tr2-top{padding:4px 16px 8px}.tr2-top .icon-btn{margin-left:-10px}
+.tr2-top{padding:50px 16px 8px}.tr2-top .icon-btn{margin-left:-10px}
 .who{display:flex;align-items:center;gap:14px;margin-top:4px}.who b{font-size:22px;display:block}.who small{color:#aaa;font-size:15px}
 .amount-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border-bottom:1px solid #2a2b30;min-height:120px}
 .bal-pill{background:#25262a;border-radius:20px;padding:8px 16px;font-size:16px}
