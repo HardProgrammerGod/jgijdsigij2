@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16224a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="unubank">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>monobank</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- Screen 1: Home -->
+  <section class="screen active" id="s-home">
+    <div class="home-scroll">
+      <div class="hero">
+        <div class="topbar">
+          <div class="avatar-p">НС</div>
+          <div class="chat"><svg viewBox="0 0 24 24" width="30" height="30"><path fill="#fff" d="M12 2C6.5 2 2.5 5.7 2.5 10.4c0 2.6 1.3 4.9 3.4 6.4L5 21l4.2-2.2c.9.2 1.8.3 2.8.3 5.5 0 9.5-3.7 9.5-8.4S17.500 2 12 2z"/><path d="M8.500 11c1 1.800 5.900 1.800 7 0" stroke="#16224a" stroke-width="1.600" fill="none" stroke-linecap="round"/></svg><b class="badge">5</b></div>
+          <div class="sp"></div>
+          <div class="cashback"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="#fff" d="M3 8h18v4H3zM4 13h16v8H4zM11 8h2v13h-2z"/><path d="M12 8C9 8 8 4 10.500 4S13 7 12 8zm0 0c3 0 4-4 1.500-4S11 7 12 8z" fill="none" stroke="#fff" stroke-width="1.500"/></svg><span>61.58 ₴</span></div>
+          <i class="vr"></i>
+          <div class="ico"><svg viewBox="0 0 32 32" width="34" height="34"><path fill="#fff" d="M5 4l5 5h12l5-5v14c0 5-5 9-11 9S5 23 5 18z"/><circle cx="12" cy="16" r="1.600" fill="#16224a"/><circle cx="20" cy="16" r="1.600" fill="#16224a"/><path d="M14.500 20l1.500 1 1.500-1" stroke="#16224a" stroke-width="1.400" fill="none"/></svg></div>
+          <div class="ico sq"><svg viewBox="0 0 24 24" width="22" height="22"><path fill="#16224a" d="M7 10h2v8H7zM11 6h2v12h-2zM15 12h2v6h-2z"/></svg></div>
+        </div>
+        <div class="balance-row"><button class="plus" data-toast="Поповнення недоступне в демо">+</button><h1 id="home-balance">0 ₴</h1></div>
+        <div class="card-wrap"><div class="vcard"><span class="brand">monobank</span><span class="num">4441 **** **** 3415</span><span class="visa">VISA</span></div></div>
+        <button class="pill-btn" data-toast="Лише одна картка в демо">▭ Усі картки</button>
+        <div class="quick">
+          <button id="q-transfer"><i><svg viewBox="0 0 24 24" width="28" height="28"><rect x="3" y="5" width="18" height="14" rx="3.500" fill="#fff"/><rect x="3" y="9" width="18" height="2" fill="#16224a"/></svg></i>Переказати<br>на картку</button>
+          <button data-toast="Платіж за IBAN недоступний в демо"><i><svg viewBox="0 0 24 24" width="26" height="26"><path fill="#c9d4ff" d="M6 2h8l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M8 12h8M8 16h6" stroke="#16224a" stroke-width="1.800"/></svg></i>Платіж<br>за IBAN</button>
+          <button data-toast="Інші платежі недоступні в демо"><i><svg viewBox="0 0 24 24" width="26" height="26"><path fill="#fff" d="M12 3l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5M3 16l9 5 9-5" stroke="#fff" stroke-width="1.800" fill="none"/></svg></i>Інші<br>платежі</button>
+        </div>
+      </div>
+      <div class="ops-sheet">
+        <div class="ops-head"><h2>Операції</h2><button class="pill-all" id="btn-all">Усі ›</button></div>
+        <div id="home-list"></div>
+      </div>
+    </div>
+      </section>
+
+  <!-- Screen 2: History -->
+  <section class="screen" id="s-hist">
+    <header class="h-head">
+      <button class="icon-btn" id="hist-close" aria-label="Закрити">✕</button>
+      <div class="h-mid"><div class="mini-card"><b>monobank</b><i>VISA</i></div><span id="hist-balance"></span></div>
+      <div class="h-right"><button class="icon-btn" aria-label="Обране">☆</button><button class="icon-btn" aria-label="Пошук">⌕</button></div>
+    </header>
+    <div class="scroll" id="hist-scroll"><div id="hist-list"></div><button class="create-btn" id="btn-create">+ Створити транзакцію</button></div>
+  </section>
+
+  <!-- Screen 3: Receipt -->
+  <section class="screen" id="s-rec">
+    <div class="rec-scroll" id="rec"></div>
+  </section>
+
+  <!-- Screen 4a: Transfer lookup -->
+  <section class="screen" id="s-tr1">
+    <header class="tr-head">
+      <div class="row"><button class="icon-btn" id="tr1-back">←</button></div>
+      <h2>Переказ на картку</h2>
+      <div class="search"><input id="card-in" inputmode="numeric" autocomplete="off" placeholder="Уведіть ім’я, номер картки або телефону"><button id="card-clear" class="hide">✕</button></div>
+    </header>
+    <div class="scroll pad">
+      <div id="found" class="box hide"><h3>Знайдено</h3><button class="found-row" id="found-row"></button></div>
+      <div id="tr-empty">
+        <div class="box row-box"><i class="grp"></i>Групові витрати</div>
+        <p class="hint">Спробуйте <button class="link" id="demo-card">4441 1144 4012 4215</button> або <button class="link" id="demo-card2">4441 1144 0411 2755</button>, або будь-які 16 цифр</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screen 4b: Amount -->
+  <section class="screen" id="s-tr2">
+    <div class="tr2-top"><button class="icon-btn" id="tr2-back">←</button>
+      <div class="who"><div id="tr2-av"></div><div><b id="tr2-name"></b><small>▣ На Чорну картку</small></div></div></div>
+    <div class="amount-area"><div class="bal-pill" id="tr2-bal"></div><div class="amount" id="tr2-amount">0 ₴</div></div>
+    <div class="comment-row"><input id="tr2-comment" placeholder="Коментар..." maxlength="60"></div>
+    <div class="send-row"><button class="sq-btn">🗓</button><button class="send" id="btn-send">Надіслати</button></div>
+    <div class="opsbar"><button data-k="×">×</button><button data-k="÷">÷</button><button data-k="+">+</button><button data-k="−">−</button><button data-k="%">%</button><button data-k="=">=</button></div>
+    <div class="keypad"><button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k=",">,</button><button data-k="0">0</button><button data-k="⌫">⌫</button></div>
+  </section>
+
+  <!-- Credits -->
+  <section class="screen" id="s-credit"><div class="scroll tabpage">
+    <h1 class="ptitle">Кредити</h1>
+    <div class="grad-card"><small>Кредитний ліміт</small><b>0 ₴</b><p>Подайте заявку — рішення за кілька хвилин</p><button class="send on" data-toast="Заявки недоступні в демо">Подати заявку</button></div>
+    <button class="box lrow" data-toast="Демо: розстрочка"><i class="dot2" style="background:#2b3558">◔</i><span>Розстрочка<small>Part-by-part без переплат</small></span></button>
+    <button class="box lrow" data-toast="Демо: кредит"><i class="dot2" style="background:#3a2b58">₴</i><span>Кредит готівкою<small>Навчальний приклад, не пропозиція</small></span></button>
+  </div></section>
+
+  <!-- Savings -->
+  <section class="screen" id="s-save"><div class="scroll tabpage">
+    <h1 class="ptitle">Накопичення</h1>
+    <div class="box jar-box">
+      <svg viewBox="0 0 120 150" width="120" height="150"><defs><clipPath id="jc"><path d="M22 34h76v84a16 16 0 0 1-16 16H38a16 16 0 0 1-16-16z"/></clipPath></defs>
+        <rect x="22" y="34" width="76" height="100" fill="#ffffff10" clip-path="url(#jc)"/>
+        <rect x="22" y="72" width="76" height="62" fill="#38d9a9" clip-path="url(#jc)"/>
+        <path d="M22 34h76v84a16 16 0 0 1-16 16H38a16 16 0 0 1-16-16z" fill="none" stroke="#9aa0ad" stroke-width="3"/>
+        <rect x="16" y="18" width="88" height="16" rx="6" fill="#9aa0ad"/></svg>
+      <div><small>Банка «На подорож»</small><b>3 120.00 ₴</b><small>ціль 5 000 ₴ · 62%</small></div>
+    </div>
+    <div class="m-actions"><button class="ghost" data-toast="Демо: зняття недоступне">Зняти</button><button class="send on" style="height:54px;font-size:17px;border-radius:16px" data-toast="Демо: поповнення недоступне">Поповнити</button></div>
+    <div class="box" style="margin-top:14px"><small class="mut">Банка «Подушка безпеки»</small><b class="big">1 800.00 ₴</b><div class="prog"><i style="width:30%"></i></div><small class="mut">ціль 6 000 ₴ · 30%</small></div>
+  </div></section>
+
+  <!-- Market -->
+  <section class="screen" id="s-market"><div class="scroll tabpage">
+    <h1 class="ptitle">Маркет</h1>
+    <div class="grid2">
+      <button class="tile" data-toast="Демо: розділ недоступний">📱<span>Техніка</span></button>
+      <button class="tile" data-toast="Демо: розділ недоступний">🎁<span>Подарункові картки</span></button>
+      <button class="tile" data-toast="Демо: розділ недоступний">📶<span>Мобільний зв’язок</span></button>
+      <button class="tile" data-toast="Демо: розділ недоступний">✈️<span>Подорожі</span></button>
+      <button class="tile" data-toast="Демо: розділ недоступний">💛<span>Благодійність</span></button>
+      <button class="tile" data-toast="Демо: розділ недоступний">🛡<span>Страхування</span></button>
+    </div>
+  </div></section>
+
+  <!-- More -->
+  <section class="screen" id="s-more"><div class="scroll tabpage">
+    <h1 class="ptitle">Ще</h1>
+    <div class="box"><h3>Повноекранний режим</h3>
+      <button class="send on" id="btn-fs" style="width:100%;height:58px;font-size:17px;border-radius:16px">Повноекранний режим</button>
+      <p class="hint" id="fs-state"></p></div>
+    <div class="box tip" id="ios-tip"><h3>iPhone: без адресного рядка</h3><p><b>Поділитися → На екран «Домой»</b></p><p class="hint">Відкрийте застосунок з іконки на екрані — він запуститься на весь екран, лише зі статус-баром телефону.</p></div>
+    <div class="box"><h3>monobank — навчальна репліка</h3><p class="hint">Вигаданий застосунок для демонстрації інтерфейсу. Реальних коштів немає.</p></div>
+    <button class="reset" id="btn-reset">Скинути демо-дані</button>
+  </div></section>
+
+  <nav class="tabbar">
+    <div class="tabs">
+      <button class="tab active" data-tab="s-home"><svg viewBox="0 0 24 24" width="28" height="28"><rect x="2" y="6" width="16" height="11" rx="3" fill="currentColor"/><rect x="6" y="3" width="16" height="11" rx="3" fill="currentColor" opacity=".6"/></svg>Картки</button>
+      <button class="tab" data-tab="s-credit"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9h-9z"/><path fill="currentColor" opacity=".6" d="M14 2a8 8 0 0 1 8 8h-8z"/></svg>Кредити</button>
+      <button class="tab" data-tab="s-save"><svg viewBox="0 0 24 24" width="28" height="28"><rect x="2" y="2" width="20" height="20" rx="6" fill="currentColor"/><circle cx="12" cy="12" r="5" fill="#2a2b30"/></svg>Накопичення</button>
+      <button class="tab" data-tab="s-more"><svg viewBox="0 0 24 24" width="28" height="28"><circle cx="7" cy="7" r="4" fill="currentColor"/><circle cx="17" cy="7" r="4" fill="currentColor"/><circle cx="7" cy="17" r="4" fill="currentColor"/><circle cx="17" cy="17" r="4" fill="currentColor"/></svg>Ще</button>
+    </div>
+    <button class="tab market" data-tab="s-market"><svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M5 8h14l1 13H4z"/><path d="M9 10V7a3 3 0 0 1 6 0v3" stroke="#2a2b30" stroke-width="1.800" fill="none"/></svg>Маркет</button>
+  </nav>
+
+  <!-- Create transaction modal -->
+  <div class="modal hide" id="modal">
+    <div class="drawer">
+      <div class="grab"></div>
+      <h2>Нова транзакція</h2>
+      <div class="chips" id="chips">
+        <button data-t="transit" class="on">Київпастранс (Оплата квитка)</button>
+        <button data-t="metro">Київське метро</button>
+        <button data-t="nikita">Переказ від Nikita</button>
+        <button data-t="custom">Власний мерчант / особа</button>
+      </div>
+      <label>Назва<input id="m-title"></label>
+      <label>Дата і час<input id="m-dt" type="datetime-local"></label>
+      <div class="seg" id="m-type"><button data-v="out" class="on">Витрата −</button><button data-v="in">Дохід +</button></div>
+      <label>Сума, ₴<input id="m-amt" inputmode="decimal" placeholder="30.00"></label>
+      <div class="m-actions"><button class="ghost" id="m-cancel">Скасувати</button><button class="send on" id="m-save">Додати</button></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
